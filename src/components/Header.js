@@ -1,10 +1,10 @@
-import logo from "../assets/logo.svg";
+// import logo from "../assets/logo.svg";
 
 const Header = ({children, theme, setTheme}) => {
   return (
     <header>
      <span className="logo">
-                <img src={logo} alt="" />
+                {/* <img src={logo} alt="" /> */}
                 <span>{children}</span>
             </span>
 

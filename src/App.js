@@ -59,7 +59,9 @@ function App() {
           Taskmate
         </Header>
         <AddTask handleSubmit={handleSubmit} editid={editid} task={task} setTask={setTask}/>
-        <ShowTask tasklist={tasklist} setTasklist={setTasklist} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        {tasklist.length>0 &&
+           <ShowTask tasklist={tasklist} setTasklist={setTasklist} handleEdit={handleEdit} handleDelete={handleDelete}/>
+        }
       </div>
     </div>
   );

@@ -3,10 +3,10 @@ const ShowTask = ({tasklist, setTasklist, handleEdit, handleDelete}) => {
       <section className='showTask'>
           <p className="head">
               <span>
-                  <span className="title">Todo</span>
+                  <span className="title">TODO</span>
                   <span className="count">{tasklist.length}</span>
               </span>
-              <span className="clearAll" onClick={() => setTasklist([])}>Clear All</span>
+              <span className="clearAll" onClick={() => setTasklist([])}>CLEAR ALL</span>
           </p>
           <ul>
               {tasklist.map((task) => (
