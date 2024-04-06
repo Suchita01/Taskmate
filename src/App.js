@@ -5,7 +5,7 @@ import AddTask from './components/AddTask';
 import ShowTask from './components/ShowTask';
 
 function App() {
-  const [task, setTask] = useState("");
+  const [task, setTask] = useState({'id':0,title: '', desc: ''});
   const [tasklist, setTasklist] = useState(JSON.parse(localStorage.getItem('tasklist')) || []);
   const [editid, setEditid] = useState(0);
   const [theme, setTheme] = useState(JSON.parse(localStorage.getItem('theme')) || "medium");
@@ -15,25 +15,27 @@ function App() {
 
     if(editid){
       const date = new Date();
-      const selectedTask = tasklist.find(task => task.id === editid);
-      const updateTask = tasklist.map((e) => (e.id === selectedTask.id ? (e = {id: e.id, name: task, time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`}) : {id: e.id, name: e.name, time: e.time}));
+      const selectedTask = tasklist.find(item => item.id === editid);
+      const updateTask = tasklist.map((e) => (e.id === selectedTask.id ? (e = {id: e.id, title: task.title, desc: task.desc, time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`}) : {id: e.id, title: e.title, desc: e.desc, time: e.time}));
       setTasklist(updateTask);
       setEditid(0);
-      setTask("");
+      setTask({id:0, title: '', desc: ''});
       return;
     }
 
     if(task){
       const date = new Date();
-      setTasklist([...tasklist, {id: date.getTime(), name: task, time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`}]);
-      setTask("");
+      const id = date.getTime()
+      setTasklist([...tasklist, {id: id, title: task.title, desc: task.desc, time: `${date.toLocaleTimeString()} ${date.toLocaleDateString()}`}]);
+      setTask({id:0, title: '', desc: ''});
     }
 
   }
 
   const handleEdit = (id) => {
+    console.log("Under Edit ".id)
     const selectedTask = tasklist.find(task => task.id === id);
-    setTask(selectedTask.name);
+    setTask(selectedTask);
     setEditid(id);
   }
 
